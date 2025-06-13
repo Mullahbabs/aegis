@@ -1099,8 +1099,8 @@ header#sidebar-header
 .service.layout-1 {
   padding: 30px;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
 }
 .service.layout-1 .icon {
   float: left;
@@ -34044,7 +34044,7 @@ form.dark-form ::-ms-input-placeholder {
   margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 991px) {
+@media (max-width: 991px) {
   .post-standard a.title {
     font-size: 20px;
     font-weight: 600;
