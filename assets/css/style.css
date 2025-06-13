@@ -2577,7 +2577,7 @@ video {
 }
 
 .background-img-main-color:after {
-  background-color: #e53935;
+  background-color: #3f3e3e;
 }
 
 .background-img-second-color:after {
@@ -34044,7 +34044,7 @@ form.dark-form ::-ms-input-placeholder {
   margin-bottom: 10px;
 }
 
-@media (max-width: 991px) {
+@media only screen and (max-width: 991px) {
   .post-standard a.title {
     font-size: 20px;
     font-weight: 600;
