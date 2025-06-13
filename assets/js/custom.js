@@ -25,7 +25,7 @@
     $search_bar = $("#search_bar"),
     $search_close = $(".close-search"),
     $search_bot = $("#search-header"),
-    $fixed_header = $("#fixed-header-dark"),
+    $fixed_header = $("#fixed-header"),
     $fixed_header_dark = $("#fixed-header-dark"),
     $sticky_content = $(".sticky-content"),
     $sticky_sidebar = $(".sticky-sidebar");
