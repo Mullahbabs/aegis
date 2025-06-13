@@ -1087,7 +1087,7 @@ header#sidebar-header
 }
 
 .fixed-header-dark .up-head {
-  display: none !important;
+  display: none;
 }
 
 .service-section-1 {
