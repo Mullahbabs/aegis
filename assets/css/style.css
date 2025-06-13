@@ -180,10 +180,10 @@ header ul.nav-menu > li:hover > ul.sub-menu > li:hover > ul.sub-menu {
   visibility: visible;
 }
 header ul.nav-menu > li.active > a {
-  color: #e53935;
+  color: #2600ff;
 }
 header ul.nav-menu > li > a:hover {
-  color: #e53935;
+  color: #2600ff;
 }
 header ul.nav-menu > li.mega-menu > a,
 header ul.nav-menu > li.has-dropdown > a {
@@ -875,7 +875,7 @@ header a.model-link span {
   height: 20px;
   padding: 1px;
   border-radius: 20px;
-  background-color: #e53935;
+  background-color: #2600ff;
   color: #fff;
 }
 
@@ -1019,7 +1019,7 @@ header#sidebar-header
   box-shadow: 0px 0px 36px -13px rgba(0, 0, 0, 0.75);
 }
 #search .btn {
-  background-color: #e53935;
+  background-color: #2600ff;
   border: none;
   float: right;
   margin-right: 20px;
@@ -1146,7 +1146,7 @@ header#sidebar-header
 
 .service.layout-2 {
   padding: 30px;
-  background-color: #e53935;
+  background-color: #121111;
   border-radius: 4px;
   -webkit-box-shadow: 0px 0px 36px -13px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 36px -13px rgba(0, 0, 0, 0.75);
@@ -1263,7 +1263,7 @@ header#sidebar-header
   background-color: #f6f6f6;
 }
 .price-table.active {
-  background: #e53935;
+  background: #2600ff;
   color: #fff;
 }
 .price-table.active .per-mile {
@@ -1424,7 +1424,7 @@ a.action-bottom {
   display: block;
 }
 a.action-bottom h4 {
-  font-size: 14px;
+  font-size: 16px;
 }
 a.action-bottom:hover {
   background-color: #2600ff;
@@ -1441,7 +1441,7 @@ a.action-bottom:hover {
   margin-bottom: 5px;
   color: #fff;
   padding: 5px 10px;
-  background-color: #919191;
+  background-color: #17a3eb;
   border-radius: 0px;
 }
 .nile-accordion .card-header .fa {
@@ -1449,7 +1449,7 @@ a.action-bottom:hover {
 }
 .nile-accordion .card-header:active,
 .nile-accordion .card-header:hover {
-  background-color: #e53935;
+  background-color: #2600ff;
 }
 .nile-accordion .card-header .btn-link {
   color: #fff;
@@ -1466,7 +1466,7 @@ a.action-bottom:hover {
 }
 .nile-accordion.layout_2 .card-header:active,
 .nile-accordion.layout_2 .card-header:hover {
-  background-color: #e53935;
+  background-color: #2600ff;
 }
 .nile-accordion.layout_2 .card-header .btn-link {
   color: #fff;
@@ -1479,7 +1479,7 @@ a.action-bottom:hover {
 }
 .nile-accordion.layout_3 .card-header:active,
 .nile-accordion.layout_3 .card-header:hover {
-  background-color: #e53935;
+  background-color: #2600ff;
   color: #fff;
 }
 .nile-accordion.layout_3 .card-header .btn-link {
@@ -1759,7 +1759,7 @@ a.action-bottom:hover {
   content: " ";
   width: 10px;
   height: 10px;
-  background-color: #e53935;
+  background-color: #2600ff;
   position: absolute;
   top: 10px;
   left: 0px;
@@ -1889,7 +1889,7 @@ a.action-bottom:hover {
   margin-bottom: 10px;
 }
 .nile-cart thead.nile-cart-title {
-  background-color: #e53935;
+  background-color: #2600ff;
   border-radius: 10px;
   margin-bottom: 15px;
 }
@@ -38206,6 +38206,32 @@ form.dark-form ::-ms-input-placeholder {
     background-color: #e53935;
     margin-bottom: 30px;
   }
+}
+
+.gradient-overlay {
+  position: relative;
+  display: inline-block; /* or block, depending on your layout */
+}
+
+.gradient-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7)
+  ); /* adjust colors/direction as needed */
+  pointer-events: none; /* allows clicks to pass through to the image */
+}
+
+.rev-slidebg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /*# sourceMappingURL=style.css.map */
