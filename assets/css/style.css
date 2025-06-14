@@ -1382,6 +1382,20 @@ header#sidebar-header
   background-size: cover;
 }
 
+.nile-about-section1 {
+  padding: 100px 0px 100px 0px;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(../img/na1.jpg);
+  background-size: cover;
+}
+
+.nile-about-section2 {
+  padding: 100px 0px 100px 0px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../img/works.jpg);
+  background-size: cover;
+}
+
 a.nile-bottom {
   background-color: #12bfeb;
   color: #fff;
@@ -1597,7 +1611,8 @@ a.action-bottom:hover {
 }
 
 .page-title {
-  background-image: url(../img/page-title.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../img/single.jpg);
   background-size: cover;
   background-position: center center;
 }
@@ -2033,7 +2048,7 @@ footer.layout-dark .contact-info .text {
   font-size: 14px;
 }
 footer.layout-dark .nile-widget h2.title {
-  color: #fff;
+  color: #12bfeb;
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 500;
