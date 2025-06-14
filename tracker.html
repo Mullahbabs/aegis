@@ -447,7 +447,7 @@
             destination: "London, UK",
             deliveryDate: deliveryDate.toISOString(),
             status: "In Transit",
-            currentLocation: "New York, USA",
+            currentLocation: "Amsterdam, Distribution Center Netherlands",
             history: [
               {
                 date: now.toISOString(),
@@ -525,7 +525,7 @@
         const locations = [
           "New York, USA",
           "In Transit - Atlantic Ocean",
-          "London Distribution Center",
+          "Amsterdam Distribution Center, Netherlands",
           "Out for Delivery",
           "Delivered",
         ];
@@ -583,7 +583,7 @@
         let shipment = shipments[trackingId];
 
         if (!shipment) {
-          alert("Tracking ID not found. Try the demo ID: TRK98765432");
+          alert("Tracking ID not found. Try a valid tracking ID.");
           return;
         }
 
