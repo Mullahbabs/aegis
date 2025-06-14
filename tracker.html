@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AegisBlue Tracker</title>
+    <title>AegisBlue Tracking System</title>
     <style>
       :root {
         --primary: #2600ff;
@@ -18,6 +18,7 @@
         --success: #00c853;
         --warning: #ffab00;
         --error: #ff1744;
+        --admin: #8a2be2;
       }
 
       * {
@@ -46,6 +47,7 @@
         max-width: 900px;
         margin: 0 auto;
         padding: 2rem;
+        position: relative;
       }
 
       header {
@@ -85,13 +87,105 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
-      .tracking-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(38, 0, 255, 0.12);
+      .admin-btn {
+        position: absolute;
+        top: 2rem;
+        width: 200px;
+        right: 2rem;
+        background: var(--admin);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      .admin-btn:hover {
+        background: #7b1fa2;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Admin Panel Styles */
+      .admin-panel {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        overflow-y: auto;
+        padding: 2rem;
+      }
+
+      .admin-container {
+        background-color: white;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+
+      .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .admin-title {
+        color: var(--admin);
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .close-admin {
+        top: 1rem;
+        width: 40px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-light);
+        transition: transform 0.3s ease;
+      }
+
+      .close-admin:hover {
+        transform: rotate(90deg);
+        color: var(--admin);
+      }
+
+      .password-form {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background-color: var(--background);
+        border-radius: 8px;
+      }
+
+      .shipment-form {
+        display: none;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
       }
 
       .form-group {
-        margin-bottom: 1.5rem;
+        flex: 1;
+        margin-bottom: 1rem;
       }
 
       label {
@@ -348,6 +442,18 @@
         color: var(--primary);
       }
 
+      .shipment-items {
+        margin-top: 1rem;
+      }
+
+      .shipment-item {
+        background-color: var(--background);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border-left: 4px solid var(--admin);
+      }
+
       @media (max-width: 768px) {
         .container {
           padding: 1.5rem;
@@ -360,58 +466,180 @@
         .info-grid {
           grid-template-columns: 1fr;
         }
+
+        .admin-btn {
+          position: relative;
+          margin-top: 20px;
+          top: 1rem;
+          right: 1rem;
+          padding: 0.5rem 1rem;
+          font-size: 0.8rem;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>AegisBlue Tracking System</h1>
+      <button class="admin-btn" id="admin-btn">Admin Panel</button><br />
 
-      <div class="form-group">
-        <label for="tracking-id">Enter Tracking ID:</label>
-        <input type="text" id="tracking-id" placeholder="e.g. TRK12345678" />
-      </div>
+      <header>
+        <h1>AegisBlue Tracking System</h1>
+        <p>Track your shipments in real-time</p>
+      </header>
 
-      <div class="captcha-container">
-        <span class="captcha-text" id="captcha-text"></span>
-        <button id="refresh-captcha">↻</button>
-      </div>
-
-      <div class="form-group">
-        <label for="captcha-input">Enter CAPTCHA:</label>
-        <input
-          type="text"
-          id="captcha-input"
-          placeholder="Enter the CAPTCHA text"
-        />
-        <div id="captcha-error" class="error"></div>
-      </div>
-
-      <button id="track-btn">Track Shipment</button>
-
-      <div id="tracking-result" class="tracking-result">
-        <h2>Tracking Information</h2>
-        <p><strong>Tracking ID:</strong> <span id="result-id"></span></p>
-        <p><strong>Status:</strong> <span id="result-status"></span></p>
-        <p>
-          <strong>Current Location:</strong> <span id="result-location"></span>
-        </p>
-        <p>
-          <strong>Estimated Delivery:</strong>
-          <span id="result-delivery"></span>
-        </p>
-        <div class="status-bar">
-          <div class="status-progress" id="status-progress"></div>
+      <div class="tracking-card">
+        <div class="demo-note">
+          <strong>Note:</strong> Due to classified operations, this system does
+          not give browsers access to cache & cookies.
         </div>
-        <p><strong>History:</strong></p>
-        <ul id="result-history"></ul>
+
+        <div class="form-group">
+          <label for="tracking-id">Enter Tracking ID:</label>
+          <input type="text" id="tracking-id" placeholder="e.g. TRK12345678" />
+        </div>
+
+        <div class="captcha-container">
+          <span class="captcha-text" id="captcha-text"></span>
+          <button id="refresh-captcha">↻</button>
+        </div>
+
+        <div class="form-group">
+          <label for="captcha-input">Enter CAPTCHA:</label>
+          <input
+            type="text"
+            id="captcha-input"
+            placeholder="Enter the CAPTCHA text"
+          />
+          <div id="captcha-error" class="error"></div>
+        </div>
+
+        <button id="track-btn">Track Shipment</button>
+
+        <div id="tracking-result" class="tracking-result">
+          <h2>Tracking Information</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <strong>Tracking ID</strong>
+              <span id="result-id"></span>
+            </div>
+            <div class="info-item">
+              <strong>Status</strong>
+              <span id="result-status"></span>
+            </div>
+            <div class="info-item">
+              <strong>Current Location</strong>
+              <span id="result-location"></span>
+            </div>
+            <div class="info-item">
+              <strong>Estimated Delivery</strong>
+              <span id="result-delivery"></span>
+            </div>
+          </div>
+
+          <div class="status-bar">
+            <div class="status-progress" id="status-progress"></div>
+          </div>
+
+          <div class="history-title">Shipment History</div>
+          <ul class="history-list" id="result-history"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="admin-panel">
+      <div class="admin-container">
+        <div class="admin-header">
+          <h2 class="admin-title">Admin Panel</h2>
+          <button class="close-admin" id="close-admin">×</button>
+        </div>
+
+        <div id="password-form" class="password-form">
+          <h3>Enter Admin Password</h3>
+          <div class="form-group">
+            <label for="admin-password">Password:</label>
+            <input
+              type="password"
+              id="admin-password"
+              placeholder="Enter admin password"
+            />
+            <div id="password-error" class="error"></div>
+          </div>
+          <button id="submit-password">Access Panel</button>
+          <div class="demo-note" style="margin-top: 1rem">
+            <strong>Alert</strong> This area is only accessible to authorized
+            users
+          </div>
+        </div>
+
+        <div id="shipment-form" class="shipment-form">
+          <h3>Create Shipments</h3>
+
+          <div class="form-group">
+            <label for="shipment-count">Number of Shipments to Create:</label>
+            <input
+              type="number"
+              id="shipment-count"
+              min="1"
+              max="20"
+              value="5"
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="origin-city">Origin City:</label>
+              <input type="text" id="origin-city" value="New York" />
+            </div>
+            <div class="form-group">
+              <label for="origin-country">Origin Country:</label>
+              <input type="text" id="origin-country" value="USA" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dest-city">Destination City:</label>
+              <input type="text" id="dest-city" value="London" />
+            </div>
+            <div class="form-group">
+              <label for="dest-country">Destination Country:</label>
+              <input type="text" id="dest-country" value="UK" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="delivery-days">Delivery Days (3-14):</label>
+            <input
+              type="number"
+              id="delivery-days"
+              min="3"
+              max="14"
+              value="7"
+            />
+          </div>
+
+          <button id="generate-shipments">Generate Shipment</button>
+
+          <div
+            class="demo-shipments-list"
+            id="demo-shipments-list"
+            style="margin-top: 2rem"
+          >
+            <h4>Existing Shipments</h4>
+            <div id="shipments-list"></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
-      // Initialize the system with a demo shipment if none exists
+      // ADMIN PASSWORD - CHANGE THIS IN PRODUCTION!
+      const ADMIN_PASSWORD = "admin123";
+
+      // Initialize the system with demo shipments if none exist
       document.addEventListener("DOMContentLoaded", function () {
-        initDemoShipment();
+        initDemoShipments();
         generateCaptcha();
 
         // Set up event listeners
@@ -421,6 +649,23 @@
         document
           .getElementById("refresh-captcha")
           .addEventListener("click", generateCaptcha);
+
+        // Admin panel functionality
+        document
+          .getElementById("admin-btn")
+          .addEventListener("click", openAdminPanel);
+        document
+          .getElementById("close-admin")
+          .addEventListener("click", closeAdminPanel);
+        document
+          .getElementById("submit-password")
+          .addEventListener("click", checkAdminPassword);
+        document
+          .getElementById("generate-shipments")
+          .addEventListener("click", generateDemoShipments);
+
+        // Load existing shipments list
+        updateShipmentsList();
       });
 
       // Generate a random tracking ID (format: TRK + 8 digits)
@@ -428,39 +673,63 @@
         return "TRK" + Math.floor(10000000 + Math.random() * 90000000);
       }
 
-      // Initialize a demo shipment that will always be available
-      function initDemoShipment() {
+      // Initialize demo shipments
+      function initDemoShipments() {
         const shipments = JSON.parse(localStorage.getItem("shipments")) || {};
 
-        // Demo shipment ID that will always work
-        const demoId = "TRK98765432";
+        // Check if we have any demo shipments
+        const hasDemoShipments = Object.values(shipments).some((s) => s.isDemo);
 
-        if (!shipments[demoId]) {
-          const now = new Date();
-          const deliveryDate = new Date();
-          deliveryDate.setDate(now.getDate() + 5); // 5 days from now
-
-          shipments[demoId] = {
-            id: demoId,
-            created: now.toISOString(),
-            origin: "New York, USA",
-            destination: "London, UK",
-            deliveryDate: deliveryDate.toISOString(),
-            status: "In Transit",
-            currentLocation: "Amsterdam, Distribution Center Netherlands",
-            history: [
-              {
-                date: now.toISOString(),
-                status: "Shipment created",
-                location: "New York, USA",
-              },
-            ],
-            distance: 0, // 0-100 representing progress
-            lastUpdated: now.toISOString(),
-          };
-
-          localStorage.setItem("shipments", JSON.stringify(shipments));
+        if (!hasDemoShipments) {
+          // Create 5 default demo shipments if none exist
+          for (let i = 0; i < 5; i++) {
+            createDemoShipment(
+              "New York",
+              "USA",
+              ["London", "Paris", "Tokyo", "Sydney", "Berlin"][i],
+              ["UK", "France", "Japan", "Australia", "Germany"][i],
+              5 + Math.floor(Math.random() * 7) // 5-11 days
+            );
+          }
         }
+      }
+
+      // Create a demo shipment
+      function createDemoShipment(
+        originCity,
+        originCountry,
+        destCity,
+        destCountry,
+        deliveryDays
+      ) {
+        const shipments = JSON.parse(localStorage.getItem("shipments")) || {};
+        const trackingId = generateTrackingId();
+        const now = new Date();
+        const deliveryDate = new Date();
+        deliveryDate.setDate(now.getDate() + deliveryDays);
+
+        shipments[trackingId] = {
+          id: trackingId,
+          created: now.toISOString(),
+          origin: `${originCity}, ${originCountry}`,
+          destination: `${destCity}, ${destCountry}`,
+          deliveryDate: deliveryDate.toISOString(),
+          status: "Processing",
+          currentLocation: `${originCity}, ${originCountry}`,
+          history: [
+            {
+              date: now.toISOString(),
+              status: "Shipment created",
+              location: `${originCity}, ${originCountry}`,
+            },
+          ],
+          distance: 0,
+          lastUpdated: now.toISOString(),
+          isDemo: true,
+        };
+
+        localStorage.setItem("shipments", JSON.stringify(shipments));
+        return trackingId;
       }
 
       // Generate a simple CAPTCHA
@@ -522,10 +791,20 @@
         // Update status based on distance
         let status = shipment.status;
         let currentLocation = shipment.currentLocation;
+
         const locations = [
-          "New York, USA",
-          "In Transit - Atlantic Ocean",
-          "Amsterdam Distribution Center, Netherlands",
+          `${shipment.origin.split(",")[0].trim()}, ${shipment.origin
+            .split(",")[1]
+            .trim()}`,
+          `In Transit - ${
+            [
+              "Atlantic Ocean",
+              "Pacific Ocean",
+              "Indian Ocean",
+              "Mediterranean Sea",
+            ][Math.floor(Math.random() * 4)]
+          }`,
+          `${shipment.destination.split(",")[0].trim()} Distribution Center`,
           "Out for Delivery",
           "Delivered",
         ];
@@ -583,7 +862,9 @@
         let shipment = shipments[trackingId];
 
         if (!shipment) {
-          alert("Tracking ID not found. Try a valid tracking ID.");
+          alert(
+            "Tracking ID not found. Please check ID for errors or contact admin if problem persists."
+          );
           return;
         }
 
@@ -612,15 +893,138 @@
         historyList.innerHTML = "";
         shipment.history.forEach((event) => {
           const li = document.createElement("li");
+          li.className = "history-item";
+
           const date = new Date(event.date);
-          li.textContent = `${date.toLocaleString()}: ${event.status} (${
-            event.location
-          })`;
+          li.innerHTML = `
+                    <div class="history-date">${date.toLocaleString()}</div>
+                    <div class="history-status">${event.status}</div>
+                    <div class="history-location">${event.location}</div>
+                `;
           historyList.appendChild(li);
         });
 
         document.getElementById("tracking-result").style.display = "block";
         generateCaptcha();
+      }
+
+      // Admin Panel Functions
+      function openAdminPanel() {
+        document.getElementById("admin-panel").style.display = "block";
+        document.getElementById("password-form").style.display = "block";
+        document.getElementById("shipment-form").style.display = "none";
+        document.getElementById("admin-password").value = "";
+        document.getElementById("password-error").textContent = "";
+      }
+
+      function closeAdminPanel() {
+        document.getElementById("admin-panel").style.display = "none";
+      }
+
+      function checkAdminPassword() {
+        const password = document.getElementById("admin-password").value;
+
+        if (password === ADMIN_PASSWORD) {
+          document.getElementById("password-form").style.display = "none";
+          document.getElementById("shipment-form").style.display = "block";
+          updateShipmentsList();
+        } else {
+          document.getElementById("password-error").textContent =
+            "Incorrect password";
+        }
+      }
+
+      function generateDemoShipments() {
+        const count =
+          parseInt(document.getElementById("shipment-count").value) || 5;
+        const originCity =
+          document.getElementById("origin-city").value || "New York";
+        const originCountry =
+          document.getElementById("origin-country").value || "USA";
+        const destCity = document.getElementById("dest-city").value || "London";
+        const destCountry =
+          document.getElementById("dest-country").value || "UK";
+        const deliveryDays =
+          parseInt(document.getElementById("delivery-days").value) || 7;
+
+        const trackingIds = [];
+
+        for (let i = 0; i < count; i++) {
+          // Add some variety to destinations for multiple shipments
+          const cityVariations = [
+            destCity,
+            destCity,
+            destCity,
+            destCity,
+            "Paris",
+            "Berlin",
+            "Tokyo",
+            "Sydney",
+          ];
+          const countryVariations = [
+            destCountry,
+            destCountry,
+            destCountry,
+            destCountry,
+            "France",
+            "Germany",
+            "Japan",
+            "Australia",
+          ];
+
+          const variationIndex = Math.min(i, cityVariations.length - 1);
+
+          const id = createDemoShipment(
+            originCity,
+            originCountry,
+            cityVariations[variationIndex],
+            countryVariations[variationIndex],
+            deliveryDays + Math.floor(Math.random() * 4) - 2 // Add some variation to delivery days
+          );
+
+          trackingIds.push(id);
+        }
+
+        alert(
+          `Created ${count} shipments with IDs:\n${trackingIds.join("\n")}`
+        );
+        updateShipmentsList();
+      }
+
+      function updateShipmentsList() {
+        const shipments = JSON.parse(localStorage.getItem("shipments")) || {};
+        const demoShipments = Object.values(shipments).filter((s) => s.isDemo);
+
+        const listContainer = document.getElementById("shipments-list");
+        listContainer.innerHTML = "";
+
+        if (demoShipments.length === 0) {
+          listContainer.innerHTML = "<p>No shipments found.</p>";
+          return;
+        }
+
+        const list = document.createElement("div");
+        list.className = "shipment-items";
+
+        demoShipments.forEach((shipment) => {
+          const item = document.createElement("div");
+          item.className = "shipment-item";
+
+          const deliveryDate = new Date(shipment.deliveryDate);
+
+          item.innerHTML = `
+                    <div><strong>ID:</strong> ${shipment.id}</div>
+                    <div><strong>Route:</strong> ${shipment.origin} → ${
+            shipment.destination
+          }</div>
+                    <div><strong>Status:</strong> ${shipment.status}</div>
+                    <div><strong>Est. Delivery:</strong> ${deliveryDate.toLocaleDateString()}</div>
+                `;
+
+          list.appendChild(item);
+        });
+
+        listContainer.appendChild(list);
       }
     </script>
   </body>
