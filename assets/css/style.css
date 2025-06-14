@@ -1213,18 +1213,19 @@ header#sidebar-header
 }
 
 .service-icon-box {
-  text-align: justify;
+  text-align: center;
   margin-bottom: 35px;
 }
 .service-icon-box a.title.h2 {
   font-size: 16px;
   font-weight: 500;
-  color: #2196f3;
+  color: #12bfeb;
   margin: 15px auto;
 }
 .service-icon-box .des {
   font-size: 13px;
   color: #fff;
+  text-align: justify;
 }
 
 .price-table {
@@ -1263,7 +1264,7 @@ header#sidebar-header
   background-color: #f6f6f6;
 }
 .price-table.active {
-  background: #2600ff;
+  background: #12bfeb;
   color: #fff;
 }
 .price-table.active .per-mile {
@@ -1376,13 +1377,13 @@ header#sidebar-header
 
 .nile-about-section {
   padding: 100px 0px 100px 0px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(../img/abg.png);
   background-size: cover;
 }
 
 a.nile-bottom {
-  background-color: #2600ff;
+  background-color: #12bfeb;
   color: #fff;
   border-radius: 35px;
   display: inline-block;
@@ -1441,15 +1442,16 @@ a.action-bottom:hover {
   margin-bottom: 5px;
   color: #fff;
   padding: 5px 10px;
-  background-color: #17a3eb;
+  background-color: #333;
   border-radius: 0px;
 }
 .nile-accordion .card-header .fa {
   margin-right: 8px;
+  color: #2196f3;
 }
 .nile-accordion .card-header:active,
 .nile-accordion .card-header:hover {
-  background-color: #2600ff;
+  background-color: #12bfeb;
 }
 .nile-accordion .card-header .btn-link {
   color: #fff;
@@ -1497,7 +1499,7 @@ a.action-bottom:hover {
 .call-action.ba-1 {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(../img/cta.jpg);
-  background-size: cover;
+  background-size: contain;
 }
 .call-action.ba-2 {
   background-color: #444;
@@ -2077,7 +2079,7 @@ body {
   font-family: "Poppins";
   font-size: 14px;
   line-height: 25px;
-  background-color: #121111;
+  background-color: #333;
 }
 
 img {
@@ -2333,7 +2335,7 @@ video {
 ======================================================================= */
 /*--- Global Background ---*/
 .background-main-color {
-  background-color: #2600ff;
+  background-color: #12bfeb;
 }
 
 .background-main-color-2 {
