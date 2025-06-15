@@ -52,6 +52,7 @@
 
       header {
         text-align: center;
+        margin-top: 20px;
         margin-bottom: 2.5rem;
         position: relative;
       }
@@ -481,8 +482,8 @@
   <body>
     <div class="container">
       <button class="admin-btn" id="admin-btn">Admin Panel</button><br />
-
-      <header>
+      <br />
+      <header style="margin-top: 20px">
         <h1>AegisBlue Tracking System</h1>
         <p>Track your shipments in real-time</p>
       </header>
@@ -650,7 +651,7 @@
               id: "TRK98765432",
               origin: "Netherlands",
               destination: "Vaals, Netherlands",
-              daysToDeliver: 7 - 10,
+              daysToDeliver: 10,
               initialStatus: "Customs-cleared",
               currentLocation: "Netherlands",
             },
@@ -720,11 +721,11 @@
             },
             {
               id: "TRK89012345",
-              origin: "Berlin, Germany",
-              destination: "Rome, Italy",
-              daysToDeliver: 3,
-              initialStatus: "Delayed",
-              currentLocation: "Alps Transit Center",
+              origin: "Netherlands",
+              destination: "Vaals, Netherlands",
+              daysToDeliver: 7,
+              initialStatus: "Customs-Cleared",
+              currentLocation: "Netherlands",
             },
           ];
 
