@@ -641,6 +641,147 @@
       document.addEventListener("DOMContentLoaded", function () {
         initDemoShipments();
         generateCaptcha();
+        function initDemoShipments() {
+          const shipments = JSON.parse(localStorage.getItem("shipments")) || {};
+
+          // Custom demo shipments configuration
+          const demoShipments = [
+            {
+              id: "TRK98765432",
+              origin: "Dubai, UAE",
+              destination: "Singapore",
+              daysToDeliver: 3,
+              initialStatus: "Processing",
+              currentLocation: "Dubai Warehouse",
+            },
+            {
+              id: "TRK12345678",
+              origin: "London, UK",
+              destination: "New York, USA",
+              daysToDeliver: 5,
+              initialStatus: "In Transit",
+              currentLocation: "Atlantic Ocean",
+            },
+            {
+              id: "TRK87654321",
+              origin: "Tokyo, Japan",
+              destination: "Sydney, Australia",
+              daysToDeliver: 7,
+              initialStatus: "Customs Hold",
+              currentLocation: "Tokyo Port",
+            },
+            {
+              id: "TRK23456789",
+              origin: "Miami, USA",
+              destination: "Sao Paulo, Brazil",
+              daysToDeliver: 4,
+              initialStatus: "In Transit",
+              currentLocation: "Caribbean Sea",
+            },
+            {
+              id: "TRK34567890",
+              origin: "Shanghai, China",
+              destination: "Los Angeles, USA",
+              daysToDeliver: 10,
+              initialStatus: "Processing",
+              currentLocation: "Shanghai Port",
+            },
+            {
+              id: "TRK45678901",
+              origin: "Paris, France",
+              destination: "Cape Town, South Africa",
+              daysToDeliver: 8,
+              initialStatus: "In Transit",
+              currentLocation: "Mediterranean Sea",
+            },
+            {
+              id: "TRK56789012",
+              origin: "Mumbai, India",
+              destination: "Frankfurt, Germany",
+              daysToDeliver: 6,
+              initialStatus: "Quality Check",
+              currentLocation: "Mumbai Airport",
+            },
+            {
+              id: "TRK67890123",
+              origin: "Toronto, Canada",
+              destination: "Seoul, South Korea",
+              daysToDeliver: 9,
+              initialStatus: "In Transit",
+              currentLocation: "Pacific Ocean",
+            },
+            {
+              id: "TRK78901234",
+              origin: "Sydney, Australia",
+              destination: "Auckland, New Zealand",
+              daysToDeliver: 2,
+              initialStatus: "Out for Delivery",
+              currentLocation: "Sydney Depot",
+            },
+            {
+              id: "TRK89012345",
+              origin: "Berlin, Germany",
+              destination: "Rome, Italy",
+              daysToDeliver: 3,
+              initialStatus: "Delayed",
+              currentLocation: "Alps Transit Center",
+            },
+          ];
+
+          // Create or update demo shipments
+          demoShipments.forEach((shipmentConfig) => {
+            if (!shipments[shipmentConfig.id]) {
+              const now = new Date();
+              const deliveryDate = new Date();
+              deliveryDate.setDate(
+                now.getDate() + shipmentConfig.daysToDeliver
+              );
+
+              shipments[shipmentConfig.id] = {
+                id: shipmentConfig.id,
+                created: now.toISOString(),
+                origin: shipmentConfig.origin,
+                destination: shipmentConfig.destination,
+                deliveryDate: deliveryDate.toISOString(),
+                status: shipmentConfig.initialStatus,
+                currentLocation: shipmentConfig.currentLocation,
+                history: [
+                  {
+                    date: now.toISOString(),
+                    status: "Shipment created",
+                    location:
+                      shipmentConfig.origin.split(",")[0].trim() + " Facility",
+                  },
+                  {
+                    date: now.toISOString(),
+                    status: shipmentConfig.initialStatus,
+                    location: shipmentConfig.currentLocation,
+                  },
+                ],
+                distance: calculateInitialDistance(
+                  shipmentConfig.initialStatus
+                ),
+                lastUpdated: now.toISOString(),
+                isDemo: true,
+              };
+            }
+          });
+
+          localStorage.setItem("shipments", JSON.stringify(shipments));
+        }
+
+        // Helper function to set initial progress based on status
+        function calculateInitialDistance(status) {
+          const statusProgress = {
+            Processing: 10,
+            "In Transit": 30,
+            "Customs Hold": 15,
+            "Quality Check": 20,
+            "Out for Delivery": 85,
+            Delayed: 5,
+          };
+          return statusProgress[status] || 0;
+        }
 
         // Set up event listeners
         document
