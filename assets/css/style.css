@@ -1610,6 +1610,169 @@ a.action-bottom:hover {
   opacity: 1;
 }
 
+/* Celestial Grid */
+.quantum-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Astral Cards */
+.stellar-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--quasar);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stellar-card::before {
+  content: "CONFIDENTIAL";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.7rem;
+  color: #5d82d1;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.stellar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Cosmic Headers */
+.stellar-card h2 {
+  color: #12bfeb;
+  margin-top: 0;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--quasar);
+  padding-bottom: 0.5rem;
+}
+
+.stellar-card h3 {
+  color: #fff;
+  margin-top: -0.5rem;
+  font-size: 1.1rem;
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+/* Interstellar Icons */
+.cosmic-icon {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Galactic Features */
+.galactic-features ul {
+  list-style: none;
+  color: #fff;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.galactic-features li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(0, 102, 204, 0.3);
+  display: flex;
+  color: #fff;
+  align-items: center;
+}
+
+.galactic-features i {
+  margin-right: 0.8rem;
+  color: #12bfeb;
+  width: 1.2rem;
+  text-align: center;
+}
+
+/* Orbital Badges */
+.orbit-badges {
+  display: flex;
+  color: #12bfeb;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.orbit-badges span {
+  background-color: rgba(0, 170, 85, 0.1);
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid var(--pulsar);
+}
+
+/* Pulsar Tagline */
+.pulsar-tagline {
+  font-style: italic;
+  color: #12bfeb;
+  opacity: 0.8;
+  margin: 1.5rem 0;
+}
+
+/* Supernova CTA */
+.supernova-cta {
+  background: linear-gradient(to right, var(--quasar), #004499);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.supernova-cta:hover {
+  background: linear-gradient(to right, #004499, var(--quasar));
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
+}
+
+/* Meteor Responsiveness */
+@media (max-width: 768px) {
+  .quantum-wrapper {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .stellar-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Nova Variants */
+#nova-alpha {
+  border-top: 3px solid var(--supernova);
+}
+
+#nova-beta {
+  border-top: 3px solid var(--comet);
+}
+
+#nova-gamma {
+  border-top: 3px solid var(--pulsar);
+}
+
+#nova-delta {
+  border-top: 3px solid var(--quasar);
+}
+
 .page-title {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(../img/single.jpg);
