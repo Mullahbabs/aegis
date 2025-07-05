@@ -38415,3 +38415,202 @@ form.dark-form ::-ms-input-placeholder {
 }
 
 /*# sourceMappingURL=style.css.map */
+.diplo-secure-container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.diplo-secure-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.diplo-secure-header h1 {
+  color: var(--dark);
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diplo-secure-subtitle {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+.diplo-secure-header h1 .diplo-secure-icon {
+  margin-right: 15px;
+  color: var(--primary);
+}
+
+.diplo-secure-tables {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.diplo-secure-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.diplo-secure-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.diplo-secure-featured {
+  border: 2px solid var(--primary);
+}
+
+.diplo-secure-badge {
+  position: absolute;
+  top: 15px;
+  right: -40px;
+  background: var(--primary);
+  color: white;
+  padding: 5px 40px;
+  transform: rotate(45deg);
+  font-size: 0.8rem;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.diplo-secure-card-head {
+  background: linear-gradient(135deg, var(--white) 0%, #f0f5ff 100%);
+  padding: 30px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.diplo-secure-tier {
+  color: var(--dark);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.diplo-secure-price {
+  color: var(--primary);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.diplo-secure-currency {
+  font-size: 1.5rem;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.diplo-secure-amount {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.diplo-secure-period {
+  align-self: flex-end;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.diplo-secure-card-body {
+  padding: 30px;
+}
+
+.diplo-secure-features {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.diplo-secure-feature {
+  margin-bottom: 15px;
+  color: var(--gray-dark);
+  display: flex;
+  align-items: flex-start;
+}
+
+.diplo-secure-icon {
+  color: var(--primary);
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.diplo-secure-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--indigo) 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.diplo-secure-btn:hover {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.diplo-secure-level {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.diplo-secure-confidential {
+  background-color: var(--info);
+}
+
+.diplo-secure-secret {
+  background-color: var(--primary);
+}
+
+.diplo-secure-topsecret {
+  background-color: var(--indigo);
+}
+
+.diplo-secure-disclaimer {
+  margin-top: 50px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.9rem;
+  padding: 15px;
+  background: rgba(0, 123, 255, 0.05);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diplo-secure-lock-icon {
+  margin-right: 10px;
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .diplo-secure-tables {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diplo-secure-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}
