@@ -536,7 +536,7 @@
             </div>
             <div class="info-item">
               <strong>Estimated Delivery</strong>
-              <span id="result-delivery"></span>
+              <span>Expired</span>
             </div>
           </div>
 
@@ -544,8 +544,16 @@
             <div class="status-progress" id="status-progress"></div>
           </div>
 
-          <div class="history-title">Shipment History</div>
-          <ul class="history-list" id="result-history"></ul>
+          <div class="history-title">Shipment Info</div>
+          <p class="demo-note">
+            An attempted delivery was made by our agent on
+            <span class="history-date">13/07/2025</span> Via [+316 *2223***].
+            <br />Due to the recipient's unavailability, the item was not
+            released and has been returned to our facility.<br />
+            Please make contact through our secure channel at your earliest
+            convenience to arrange an alternative handover.
+          </p>
+          <p>-Aegisblue</p>
         </div>
       </div>
     </div>
@@ -727,7 +735,7 @@
               origin: "Netherlands",
               destination: "Vaals, Netherlands",
               daysToDeliver: 7,
-              initialStatus: "Out For Delivery",
+              initialStatus: "Attempted Delivery, Failed",
               currentLocation: "Netherlands",
             },
           ];
@@ -1026,28 +1034,10 @@
         document.getElementById("result-location").textContent =
           shipment.currentLocation;
 
-        const deliveryDate = new Date(shipment.deliveryDate);
-        document.getElementById("result-delivery").textContent =
-          deliveryDate.toLocaleDateString();
-
         document.getElementById("status-progress").style.width =
           shipment.distance + "%";
 
         // Display history
-        const historyList = document.getElementById("result-history");
-        historyList.innerHTML = "";
-        shipment.history.forEach((event) => {
-          const li = document.createElement("li");
-          li.className = "history-item";
-
-          const date = new Date(event.date);
-          li.innerHTML = `
-                    <div class="history-date">${date.toLocaleString()}</div>
-                    <div class="history-status">${event.status}</div>
-                    <div class="history-location">${event.location}</div>
-                `;
-          historyList.appendChild(li);
-        });
 
         document.getElementById("tracking-result").style.display = "block";
         generateCaptcha();
